@@ -351,8 +351,8 @@
     el: document.getElementById("audio-player"),
     songs: [
       {
-        image: "images/sunhawk-small@2x.jpg",
-        name: "Sunhawk - She Snake Shuffle",
+        image: "images/qotsa.jpg",
+        name: "Queens of the Stone Age - I Appear Missing",
         srcs: [
           {
             src: "i-appear-missing.mp3",
@@ -361,10 +361,10 @@
         ]
       }, {
         image: "images/sunhawk-small-2@2x.jpg",
-        name: "Sunhawk - Shotgun Love",
+        name: "Highly Suspect - Then Mickey",
         srcs: [
           {
-            src: "i-appear-missing.mp3",
+            src: "then-mickey.mp3",
             type: "audio/mp3"
           }
         ]
