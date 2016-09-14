@@ -13,3 +13,4 @@ Application to loop music between points that the user sets using a range slider
   - [Spotify Web API Tutorial](https://developer.spotify.com/web-api/tutorial/)
   - [Authorization Guide](https://developer.spotify.com/web-api/authorization-guide/)
   - [Spotify Apple Script](https://developer.spotify.com/applescript-api/)
+  - [AppleScript Itunes](https://www.macstories.net/tutorials/getting-started-with-javascript-for-automation-on-yosemite/)
