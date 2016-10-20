@@ -4,137 +4,30 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Playfinite</title>
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/app.css" />
-      <style>
-      .container {
-    margin: 1em;
-          color: #FFFFFF;
-}
+  </head>
+  <body>
+      <div class="row">
+          <div class="large-12 columns">
+<form>
+    <div class="slider" id="my_slider" data-slider data-initial-start="7" data-initial-end="13"> <span class="slider-handle" data-slider-handle role="slider" tabindex="1"></span> <span class="slider-fill" data-slider-fill></span> <span class="slider-handle" data-slider-handle role="slider" tabindex="1"></span>
+        <input type="hidden" id="startLine">
+        <input type="hidden" id="finishLine"> </div>
+    <br />
+    <audio controls preload autoplay src="i-appear-missing.mp3" id="testPlayer"></audio>
+    <button type="button" id="pause">PAUSE</button>
+    <button type="button" id="start" style="display:none;">START</button>
+</form>
 
-img {
-    margin-bottom: 1em;
-}
-      </style>
-  
-      <link rel="stylesheet" type="text/css" href="https://developer.spotify.com/web-api/static/css/cached.css">
-      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-      <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script type='text/javascript'>//<![CDATA[
-window.onload=function(){
-(function() {
-    
-    function login(callback) {
-        var CLIENT_ID = '6b284830006843e7ae7b170725715aed';
-        var REDIRECT_URI = 'http://jmperezperez.com/spotify-oauth-jsfiddle-proxy/';
-        function getLoginURL(scopes) {
-            return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
-              '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
-              '&scope=' + encodeURIComponent(scopes.join(' ')) +
-              '&response_type=token';
-        }
-        
-        var url = getLoginURL([
-            'user-read-email'
-        ]);
-        
-        var width = 450,
-            height = 730,
-            left = (screen.width / 2) - (width / 2),
-            top = (screen.height / 2) - (height / 2);
-    
-        window.addEventListener("message", function(event) {
-            var hash = JSON.parse(event.data);
-            if (hash.type == 'access_token') {
-                callback(hash.access_token);
-            }
-        }, false);
-        
-        var w = window.open(url,
-                            'Spotify',
-                            'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
-                           );
-        
-    }
-
-    function getUserData(accessToken) {
-        return $.ajax({
-            url: 'https://api.spotify.com/v1/me',
-            headers: {
-               'Authorization': 'Bearer ' + accessToken
-            }
-        });
-    }
-
-    var templateSource = document.getElementById('result-template').innerHTML,
-        template = Handlebars.compile(templateSource),
-        resultsPlaceholder = document.getElementById('result'),
-        loginButton = document.getElementById('btn-login');
-    
-    loginButton.addEventListener('click', function() {
-        login(function(accessToken) {
-            getUserData(accessToken)
-                .then(function(response) {
-                    loginButton.style.display = 'none';
-                    resultsPlaceholder.innerHTML = template(response);
-                });
-            });
-    });
-    
-})();
-}//]]> 
-
-</script>
-
-  
-</head>
-
-<body id="entry-page">
-    <div id="entry-panel">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-        <style type="text/css">
-            .st0 {
-                fill: #008CA8;
-            }
-        </style>
-        <g>
-            <path class="st0" d="M31.1,20.5c-2.9,0-5.3,2.5-7.3,4.5c2,1.9,4.1,4.5,7.1,4.5c2.6,0,4.5-2.1,4.5-4.5
-		C35.5,22.4,33.7,20.5,31.1,20.5z" />
-            <path class="st0" d="M8.1,25c0,2.6,1.9,4.5,4.4,4.5c2.9,0,5.3-2.5,7.3-4.5c-2-1.9-4.1-4.5-7.1-4.5C10,20.5,8.1,22.6,8.1,25z" />
-            <path class="st0" d="M45.4,22.2L7.8,0.4C5.7-0.8,2.9,0.8,2.9,3.3v43.4c0,2.5,2.7,4.1,4.9,2.8l37.6-21.7
-		C47.6,26.6,47.6,23.4,45.4,22.2z M30.9,32.6c-3.8,0-6.7-3-9.1-5.5c-2.6,2.6-5.4,5.5-9.5,5.5c-4.3,0-7.4-3.2-7.4-7.6
-		c0-4.1,3.3-7.6,7.8-7.6c3.8,0,6.7,3,9.1,5.5c2.6-2.6,5.4-5.5,9.5-5.5c4.4,0,7.4,3.2,7.4,7.6C38.8,29.1,35.5,32.6,30.9,32.6z" /> </g>
-    </svg> <br/>
-  <div class="container">
-    <h1>Login With Spotify</h1>
-    <p>Log in with your Spotify account to access your playlist and music!</p>
-    <button class="btn btn-primary" id="btn-login">Login</button>
-    <div id="result"></div>
-</div>
-<script id="result-template" type="text/x-handlebars-template">
-    <dl>
-      <img src="{{images.0.url}}">
-      <dt>User Name</dt>
-      <dd>{{id}}</dd>
-      <dt>Display Name</dt>
-      <dd>{{display_name}}</dd>
-      <dt>Country</dt>
-      <dd>{{country}}</dd>
-      <dt>Followers</dt>
-      <dd>{{followers.total}}</dd>
-      <dt>Profile</dt>
-      <dd><a href="{{external_urls.spotify}}" target="_blank">{{external_urls.spotify}}</a></dd>
-      <dt>Email</dt>
-      <dd>{{email}}</dd>
-      <dt>Product</dt>
-      <dd>{{product}}</dd>
-    </dl>
-</script>
-  
-      
-        
-        
-        
-</div>
-</body>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/what-input.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+              
+              
+        </div> 
+    </div>
+  </body>
 </html>
