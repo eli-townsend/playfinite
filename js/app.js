@@ -1,16 +1,18 @@
 var MYAUDIO = (function(){
-   
-    var startTime = 7,
-        endTime = 13,
-        intervalValue = (endTime - startTime) * 1000,
+  
+    var startTime;
+    var endTime;
+    //var songLength = document.getElementById("testPlayer");
+    //testPlayer.duration;
+  
+    var intervalValue,
         audioControl,       //audio object
         loopingObject,      //setInterval variable so it can be cleared out
         paused;             //true or false
-   
+ 
     var play = function(){
         audioControl.currentTime = startTime;
         audioControl.play();
-        console.log(audioControl.currentTime);
     },
     loop = function(){
         loopingObject = setInterval(play, intervalValue) ;
@@ -23,7 +25,7 @@ var MYAUDIO = (function(){
     },
     continuePlaying = function(){
         var timeLeft = (endTime - audioControl.currentTime) * 1000;
-       
+      
         //Continue playing
         audioControl.play();
  
@@ -33,29 +35,53 @@ var MYAUDIO = (function(){
             init();
         }, timeLeft);
     },
+    setValues = function()
+    {
+        startTime = parseFloat($("#startLine").val());
+        endTime = parseFloat($("#finishLine").val());
+        intervalValue = (endTime - startTime) * 1000;
+    },
+    update = function(){
+        setValues();
+        clearInterval(loopingObject);
+        play();
+        loop();
+    },
     init = function(){
+        setValues();
+        console.log(startTime);
+        console.log(endTime);
+       
         audioControl = document.getElementById("testPlayer");
         play();
         loop();
     };
-   
+  
     return {
         init: init,
+        update: update,
         pause: pause,
         continuePlaying: continuePlaying
     }
-   
+  
 }());
  
 $("document").ready(function(){
+ 
+    $(document).foundation();
     MYAUDIO.init();
-   
+     
+      //Add Events
+      $('.slider').on('moved.zf.slider', function(){
+          MYAUDIO.update();
+      });
+         
     $("#pause").on("click", function(){
         MYAUDIO.pause();
         $("#pause").hide();
         $("#start").show();
     });
-   
+  
     $("#start").on("click", function(){
         MYAUDIO.continuePlaying();
         $("#start").hide();
