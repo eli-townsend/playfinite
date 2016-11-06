@@ -10,6 +10,7 @@ var MYAUDIO = (function(){
         loopingObject,      //setInterval variable so it can be cleared out
         paused;             //true or false
  
+    
     var play = function(){
         audioControl.currentTime = startTime;
         audioControl.play();
@@ -35,8 +36,7 @@ var MYAUDIO = (function(){
             init();
         }, timeLeft);
     },
-    setValues = function()
-    {
+    setValues = function() {
         startTime = parseFloat($("#startLine").val());
         endTime = parseFloat($("#finishLine").val());
         intervalValue = (endTime - startTime) * 1000;
@@ -67,13 +67,13 @@ var MYAUDIO = (function(){
 }());
  
 $("document").ready(function(){
- 
-    $(document).foundation();
+    
     MYAUDIO.init();
      
-      //Add Events
+      
       $('.slider').on('moved.zf.slider', function(){
-          MYAUDIO.update();
+         setTimeout(function(){MYAUDIO.update();
+                              },2000);
       });
          
     $("#pause").on("click", function(){
