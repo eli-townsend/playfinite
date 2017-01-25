@@ -53,7 +53,7 @@ var MYAUDIO = (function(){
         console.log(endTime);
        
         audioControl = document.getElementById("testPlayer");
-        play();
+        //play();
         loop();
     };
   
@@ -72,8 +72,9 @@ $("document").ready(function(){
      
       
       $('.slider').on('moved.zf.slider', function(){
-         setTimeout(function(){MYAUDIO.update();
-                              },2000);
+         setTimeout(function(){
+             MYAUDIO.update();
+            },2000);
       });
          
     $("#pause").on("click", function(){
@@ -88,7 +89,6 @@ $("document").ready(function(){
         $("#pause").show();
     });
 });
-
 
 //Foundation JavaScript
 $(document).foundation();
